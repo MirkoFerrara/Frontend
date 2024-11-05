@@ -1,0 +1,158 @@
+<div class="container mt-4">
+  <mat-card>
+    <br>
+    <mat-card-header class="form-container">
+      <mat-card-title class="title">Cerca Persone per Indirizzo</mat-card-title>
+      <br><br>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="d-flex flex-column form-content">
+        <div class="input-container">
+          <mat-form-field appearance="outline" class="small-field">
+            <mat-label>Indirizzo</mat-label>
+            <input matInput 
+                   placeholder="Indirizzo" 
+                   [(ngModel)]="searchAddress" 
+                   name="indirizzo"
+                   (ngModelChange)="onSearchChange()">
+          </mat-form-field>
+        </div><br>
+        <div *ngIf="errorMessage" class="error-message center-text">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </mat-card-content><br>
+  </mat-card>
+
+  <mat-card class="mt-4 mat-cell person-table" style="margin-top: 40px;" *ngIf="personData && personData.length > 0">
+    <mat-card-header class="header form-container">
+      <mat-card-title>Lista Persone con residenza</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-cell p">
+      <table mat-table [dataSource]="personData" class="mat-elevation-z8">
+        <!-- Le colonne della tabella rimangono invariate -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Nome </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.nome }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cognome">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Cognome </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.cognome }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataNascita">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Data di nascita </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.dataNascita }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codiceFiscale">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Codice Fiscale </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.codiceFiscale }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="indirizzo">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Indirizzo </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.indirizzo }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="citta">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Città </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.citta }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cap">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> CAP </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.cap }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br><br>
+</div>
+
+
+<style>
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content-container {
+  width: 100%; /* Occupa tutta la larghezza disponibile */
+  max-width: 1200px; /* Larghezza massima */
+  margin: 0 auto; /* Centra orizzontalmente */
+  background-color: #e0e0f0; /* Colore celeste chiaro */
+  padding: 20px; /* Aggiungi un po' di padding all'interno */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+  border-radius: 8px; /* Arrotonda gli angoli */
+}
+  .center-text {
+    text-align: center;
+  }
+
+  .mat-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Spazio tra input e bottone */
+  }
+
+  .small-field {
+      height: 56px; /* Imposta la stessa altezza del pulsante */
+      width: 700px;
+  }
+
+  .search-button {
+    height: 56px; /* Imposta la stessa altezza del campo input */
+    padding: 0 24px; /* Aggiunge spazio laterale per il bottone */
+    font-size: 16px; /* Aumenta la dimensione del testo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .results {
+    margin-top: 20px;
+  }
+
+  .results table {
+    width: 100%;
+  }
+
+  .results ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .mat-header-cell,
+.mat-cell {
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap; /* Impedisce che il testo vada a capo */
+  overflow: hidden; /* Nasconde il testo che supera la larghezza della cella */
+  min-width: 150px; /* Imposta una larghezza minima */
+  max-width: 100%; /* Imposta una larghezza massima */
+}
+
+.person-table {
+  width: 100%;
+  max-width: 1200px; /* Larghezza massima fissata per la tabella */
+  margin: 0 auto; /* Centra la tabella */
+  background-color: #f0f0f090;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+</style>

@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="dialog-title">Modifica Residenza</h1>
+<div mat-dialog-content>
+  <div class="form-container"> <!-- Contenitore per i form -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Indirizzo</mat-label>
+      <input matInput [(ngModel)]="data.indirizzo" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Città</mat-label>
+      <input matInput [(ngModel)]="data.citta" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>CAP</mat-label>
+      <input matInput [(ngModel)]="data.cap" required type="number">
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onNoClick()" class="action-button">Annulla</button>
+  <button mat-button [mat-dialog-close]="data" class="action-button">Salva</button>
+</div>

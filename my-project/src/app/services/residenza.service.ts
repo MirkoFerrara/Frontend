@@ -7,7 +7,7 @@ import { Residenza } from '../models/residenza.model';
   providedIn: 'root'
 })
 export class ResidenzaService {
-  private baseUrl = 'http://localhost:8080/residenza';
+  private baseUrl = '${environment.BACKEND_URL}/residenza';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { Persona } from '../models/persona.model';
   providedIn: 'root'
 })
 export class PersonaService {
-  private baseUrl = 'http://localhost:8080/persona';
+  private baseUrl = '${environment.BACKEND_URL}/persona';
 
   constructor(private http: HttpClient) { }
 

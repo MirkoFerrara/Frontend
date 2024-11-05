@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Residenza } from '../models/residenza.model';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResidenzaService {
-  private baseUrl = '${environment.BACKEND_URL}/residenza';
+  private baseUrl = `${environment.BACKEND_URL}/residenza`;
 
   constructor(private http: HttpClient) {}
 

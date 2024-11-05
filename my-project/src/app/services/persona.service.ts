@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona } from '../models/persona.model';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaService {
-  private baseUrl = '${environment.BACKEND_URL}/persona';
+  private baseUrl = `${environment.BACKEND_URL}/persona`;
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <mat-card><br>
+    <mat-card-header class="header form-container">
+      <mat-card-title class="title">Gestione Persone</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="form-container small-width">
+      <form [formGroup]="newPersonaForm" (ngSubmit)="createPersona()" class="d-flex flex-column form-content">
+        
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newPersonaForm.get('nome')?.invalid && formSubmitted">Nome è richiesto</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Cognome</mat-label>
+          <input matInput formControlName="cognome" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newPersonaForm.get('cognome')?.invalid && formSubmitted">Cognome è richiesto</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Data di Nascita</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dataNascita" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="newPersonaForm.get('dataNascita')?.invalid && formSubmitted">Data di nascita è richiesta</mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="newPersonaForm.get('dataNascita')?.hasError('futureDate')">
+          La data di nascita non può essere nel futuro
+        </mat-error>
+
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Codice Fiscale</mat-label>
+          <input matInput formControlName="codiceFiscale" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newPersonaForm.get('codiceFiscale')?.invalid && formSubmitted">Codice Fiscale è richiesto</mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="newPersonaForm.hasError('codiceFiscaleInvalido')">
+          Il codice fiscale non corrisponde ai dati inseriti
+        </mat-error>
+        
+        <button mat-raised-button color="primary" type="submit" class="small-button" 
+        [disabled]="newPersonaForm.invalid">
+          Aggiungi Persona
+        </button> 
+
+      </form>
+
+    </mat-card-content><br>
+  </mat-card>
+ 
+  <mat-card class="mt-4 mat-cell person-table" style="margin-top: 40px;" *ngIf="persone && persone.length > 0"> <!-- Aggiunto margine superiore -->
+    <mat-card-header class="header form-container">
+      <mat-card-title>Lista Persone</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-cell p">
+      <table mat-table [dataSource]="persone" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> ID </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Nome </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.nome }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cognome">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Cognome </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.cognome }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="codiceFiscale">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Codice Fiscale </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.codiceFiscale }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataNascita">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Data di nascita </th>
+          <td mat-cell *matCellDef="let persona" class="center-text"> {{ persona.dataNascita }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="azioni">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Azioni </th>
+          <td mat-cell *matCellDef="let persona" class="center-text">
+            <button mat-icon-button color="warn" (click)="removePersona(persona.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table> 
+    </mat-card-content>
+  </mat-card><br><br>
+</div>

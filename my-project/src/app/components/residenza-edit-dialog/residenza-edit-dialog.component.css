@@ -1,0 +1,61 @@
+.custom-dialog-container {
+    max-width: 500px; /* Imposta un max-width se necessario */
+}
+
+.dialog-title {
+    text-align: center; /* Centra il titolo del dialogo */
+    margin: 0;         /* Rimuove il margine predefinito */
+    margin-bottom: 10px; /* Aggiunge spazio sotto il titolo */
+}
+
+.custom-dialog-container .mat-dialog-content { 
+    display: flex; /* Usa Flexbox per centrare verticalmente */
+    flex-direction: column; /* Disposizione verticale */
+    align-items: center; /* Allinea al centro orizzontalmente */
+}
+    
+.form-container {
+    padding-top: 2%;
+    display: flex; /* Usa il Flexbox per il layout dei form fields */
+    flex-direction: column; /* Disposizione verticale */
+    width: 100%; /* Assicura che il contenitore occupi tutta la larghezza */
+    align-items: center; /* Centra i form fields orizzontalmente */
+}
+
+.custom-dialog-container .mat-dialog-actions {
+    justify-content: center; /* Centra le azioni orizzontalmente */ 
+}
+
+.dialog-actions {
+    display: flex; /* Usa il Flexbox per il layout */
+    justify-content: center; /* Centra i pulsanti orizzontalmente */ 
+}
+
+.mat-form-field {
+    width: 100%; /* Assicura che i campi di input occupino tutta la larghezza */ 
+    text-align: center; /* Centra il testo degli input */
+}
+
+/* Centra e ingrandisce i label */
+.mat-form-field .mat-label {
+    text-align: center; /* Centra il testo del label */
+    font-size: 1.2em; /* Aumenta la dimensione del font per il label */ 
+}
+
+/* Aumenta la dimensione dei pulsanti */
+.action-button {
+    font-size: 18px; /* Imposta la dimensione del font */ 
+}
+
+/* Imposta uno sfondo grigio sugli input */
+.mat-form-field .mat-input-element {
+    background-color: #f0f0f0; /* Sfondo grigio chiaro */
+    border-radius: 5px; /* Aggiungi un leggero bordo arrotondato */
+    padding: 10px; /* Aggiungi del padding per rendere più comodo l'inserimento */
+}
+
+/* Aggiungi un bordo più scuro quando l'input è attivo */
+.mat-form-field .mat-input-element:focus {
+    background-color: #e0e0e0; /* Sfondo leggermente più scuro quando è in focus */
+}
+ 

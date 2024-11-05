@@ -1,0 +1,108 @@
+<div class="container mt-4">
+  <mat-card><br>
+    <mat-card-header class="header form-container">
+      <mat-card-title>Gestione Residenze</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="form-container small-width">
+      <form [formGroup]="newResidenzaForm" (ngSubmit)="onSubmit()" class="d-flex flex-column form-content">
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Indirizzo</mat-label>
+          <input matInput formControlName="indirizzo" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newResidenzaForm.get('indirizzo')?.hasError('required') && formSubmitted">
+            Indirizzo è obbligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Città</mat-label>
+          <input matInput formControlName="citta" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newResidenzaForm.get('citta')?.hasError('required') && formSubmitted">
+            Città è obbligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>CAP</mat-label>
+          <input matInput type="number" formControlName="cap" [errorStateMatcher]="customErrorStateMatcher">
+          <mat-error *ngIf="newResidenzaForm.get('cap')?.hasError('required') && formSubmitted">
+            CAP è obbligatorio
+          </mat-error>
+          <mat-error *ngIf="newResidenzaForm.get('cap')?.hasError('pattern') && formSubmitted">
+            CAP deve essere un numero di 5 cifre
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="small-field">
+          <mat-label>Persona</mat-label>
+          <mat-select formControlName="id_anagrafica" (selectionChange)="onPersonaChange($event.value)" [errorStateMatcher]="customErrorStateMatcher">
+            <mat-option *ngFor="let persona of persone" [value]="persona.id">
+              {{persona.nome}} {{persona.cognome}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="newResidenzaForm.get('id_anagrafica')?.invalid && formSubmitted">Seleziona una persona</mat-error>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" type="submit" 
+        [disabled]="newResidenzaForm.invalid || !hasAvailablePersone" 
+        class="small-button">
+          Aggiungi Residenza
+        </button>
+        </form>
+        <p *ngIf="!hasAvailablePersone" class="no-persone-message">
+        <br>
+        Non ci sono persone disponibili per aggiungere una nuova residenza.
+      </p>
+    </mat-card-content><br>
+  </mat-card>
+
+  <mat-card class="mt-4 mat-cell person-table" style="margin-top: 40px;" *ngIf="residenze && residenze.length > 0">
+    <mat-card-header class="header form-container">
+      <mat-card-title>Lista Residenze</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-cell p">
+      <table mat-table [dataSource]="residenze" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> ID </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text"> {{residenza.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="indirizzo">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Indirizzo </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text"> {{residenza.indirizzo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="citta">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Città </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text"> {{residenza.citta}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cap">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> CAP </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text"> {{residenza.cap}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id_anagrafica">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> ID Persona </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text"> {{residenza.id_anagrafica}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="azioni">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Azioni </th>
+          <td mat-cell *matCellDef="let residenza" class="center-text">
+            <button mat-icon-button color="primary" (click)="updateResidenza(residenza)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="removeResidenza(residenza.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <br><br>
+</div> 

@@ -1,0 +1,92 @@
+/* Contenitore principale per il form */
+.form-container {
+  display: flex;
+  justify-content: center;  /* Allinea orizzontalmente al centro */
+  align-items: center;      /* Allinea verticalmente al centro */
+  flex-direction: column;   /* Dispone i campi in colonna */
+   padding: 16px;            /* Padding per dare spazio all'interno */
+  border-radius: 8px;       /* Bordo arrotondato */
+}
+
+/* Contenuto del form */
+.form-content {
+  width: 100%;               /* Rende il form responsivo */
+  max-width: 600px;          /* Imposta una larghezza massima */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                 /* Spazio tra i campi del form */
+}
+
+/* Stile per i campi del form */
+.small-field {
+  width: 100%;               /* Imposta i campi del form alla massima larghezza */
+}
+
+/* Stile per il bottone del form */
+.small-button {
+  width: 100%;               /* Rende il bottone largo come il form */
+  max-width: 200px;          /* Limita la larghezza massima del bottone */
+  align-self: center;        /* Centra il bottone all'interno del form */
+}
+
+/* Stile per la tabella delle residenze */
+.person-table {
+  width: 50%;                /* Rende la tabella larga come il contenitore */
+  max-width: 50%;            /* Imposta una larghezza massima per la tabella */
+  margin: 0 auto;            /* Centra la tabella nel contenitore */
+  table-layout: fixed;       /* Assicura che le colonne non superino i limiti */
+  background-color: #f0f0f090; 
+  padding: 16px;
+  border-radius: 8px;
+}
+
+/* Spaziatura interna per le celle della tabella */
+.mat-header-cell,
+.mat-cell {
+  padding: 8px;              /* Spaziatura interna per le celle */
+  text-align: left;          /* Allinea il testo a sinistra */
+  white-space: nowrap;       /* Impedisce l'andata a capo */
+  overflow: hidden;          /* Nasconde il contenuto che esce dai bordi */
+  text-overflow: ellipsis;   /* Aggiunge "..." se il contenuto è troppo lungo */
+}
+
+/* Stile per l'intestazione della card */
+.mat-card-header {
+  display: flex;             /* Imposta il layout come flex */
+  justify-content: center;   /* Centra orizzontalmente */
+  align-items: center;       /* Centra verticalmente (opzionale) */
+  background-color: #e0e0e0; /* Grigio leggermente più scuro per il titolo */
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Titolo della card */
+.mat-card-title {
+  text-align: center;        /* Centra il testo */ 
+  flex: 1;                   /* Occupa tutta la larghezza disponibile */
+}
+
+/* Media query per migliorare la responsività */
+@media (max-width: 600px) {
+  .person-table {
+    max-width: 100%;         /* Assicura che la tabella non superi mai il 100% del contenitore */
+    overflow-x: auto;        /* Abilita lo scrolling orizzontale se necessario */
+  }
+
+  .mat-card-content {
+    padding: 8px;           /* Riduce il padding interno */
+  }
+}
+
+/* Mantieni i campi di input bianchi */
+.mat-form-field {
+  width: 100%;  /* I campi occupano l'intera larghezza disponibile */
+}
+
+.mat-form-field .mat-input-element {
+  background-color: white !important;  /* Imposta lo sfondo dei campi di input a bianco */
+}
+
+.center-text {
+  text-align: center;
+}

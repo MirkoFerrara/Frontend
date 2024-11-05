@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span class="toolbar-title">Gestione Persone e Residenze</span>
+  <span class="toolbar-spacer"></span>
+  <div class="toolbar-buttons">
+    <button mat-button routerLink="/gestione">Home</button>
+    <button mat-button routerLink="/persone">Persone</button>
+    <button mat-button routerLink="/residenze">Residenze</button>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<style>
+  /* Aggiungi questa classe per centrare il titolo */
+  .toolbar {
+    display: flex;
+    justify-content: center; /* Centra tutto orizzontalmente */
+    align-items: center;     /* Centra tutto verticalmente */
+    position: relative;      /* Posizionamento relativo per aggiustamenti */
+  }
+
+  /* Tieni il titolo centrato */
+  .toolbar-title {
+    position: absolute;      /* Assoluto per centrarlo */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;         /* Puoi cambiare le dimensioni a piacimento */
+    font-weight: bold;
+  }
+
+  /* Mantieni i pulsanti a destra */
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  /* Controlla i pulsanti */
+  mat-toolbar button {
+    font-size: 14px;
+  }
+</style>

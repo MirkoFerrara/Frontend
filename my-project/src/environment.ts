@@ -1,3 +1,4 @@
-export const environment = { 
-  BACKEND_URL: process.env["BACKEND_URL"] || 'https://backend-g0vk.onrender.com'
+export const environment = {
+  production: false,
+  BACKEND_URL: 'http://localhost:8080'  
 };

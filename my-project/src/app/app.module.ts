@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Routing Module
@@ -57,7 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatError
   ],
-  providers: [  { provide: MAT_DATE_LOCALE, useValue: 'it-IT' } ],
+  providers: [  { provide: MAT_DATE_LOCALE, useValue: 'it-IT' } , provideHttpClient(withFetch()) ],
   bootstrap: [AppComponent]})
 
 export class AppModule { }
